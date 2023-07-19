@@ -8,6 +8,5 @@ from .models import problem
 @login_required(login_url = 'login')
 def HomePage(request):
     probs = problem.objects.all()
-
     return render(request,'home.html',{'probs':probs})  
     
