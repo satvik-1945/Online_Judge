@@ -5,9 +5,9 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-@login_required(login_url = 'login')
-def HomePage(request):
-    return render(request,'home.html')  
+# @login_required(login_url = 'login')
+# def HomePage(request):
+#     return render(request,'home.html')  
 def signupPage(request):
     if request.method == 'POST':
         uname = request.POST.get('username')
