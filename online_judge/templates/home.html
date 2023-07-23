@@ -44,7 +44,7 @@
           {% for prob in probs %}
           <div class="problemsList">
             <div class="problemname">
-              <a href="description.html">{{ prob.name }} ({{ prob.difficulty }})</a>
+              <a href="{% url 'problem_description' prob.id %}">{{ prob.name }} ({{ prob.difficulty }})</a>
             </div>
           </div>
           {% endfor %}
