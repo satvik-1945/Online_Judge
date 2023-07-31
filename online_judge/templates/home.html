@@ -1,66 +1,100 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <style>
-      {% comment %} body {
-        background-color: black;
-        color: white;
-      } {% endcomment %}
+  <!-- Custom CSS -->
+  <style>
+    /* Body background color */
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Arial', sans-serif;
+    }
 
-      {% comment %} .logo {
-        width: 50px;
-        height: 50px;
-        margin-right: 10px;
-        background-color: black;
-      } {% endcomment %}
-    </style>
+    /* Header style */
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px;
+    }
 
-    <title>Home Page</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="header mt-3">
-        <div class="logo">
-          <img src="{% static 'logo.png' %}">
-        </div>
-        <h1>CodeAvita</h1>
-      </div>
+    /* Logout button style */
+    .logout-btn {
+      background-color: #0056b3;
+      color: #fff;
+      border: none;
+    }
 
-      <div class="problems mt-4">
-        <h2>List of Problems</h2>
-        <ul>
-          {% comment %} <li>Problem 1 - Easy</li> {% endcomment %}
-          {% comment %} <li>Problem 2 - Medium</li>
-          <li>Problem 3 - Hard</li> {% endcomment %}
+    .logout-btn:hover {
+      background-color: #003d80;
+    }
 
-          {% for prob in probs %}
-          <div class="problemsList">
-            <div class="problemname">
-              <a href="{% url 'problem_description' prob.id %}">{{ prob.name }} ({{ prob.difficulty }})</a>
-            </div>
-          </div>
-          {% endfor %}
-        </ul>
-      </div>
+    /* Problems list style */
+    .problems {
+      margin-top: 30px;
+    }
 
+    .problemsList {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .problemname {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #007bff;
+    }
+
+    /* Responsive styling */
+    @media (max-width: 576px) {
+      /* Add responsive styles here if needed */
+    }
+  </style>
+
+  <title>Home Page</title>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>CodeAvita</h1>
       <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
-        <button type="submit" class="btn btn-primary mt-4">Logout</button>
+        <button type="submit" class="btn btn-primary logout-btn">Logout</button>
       </form>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+    <div class="problems mt-4">
+      <h2>List of Problems</h2>
+      <ul>
+        {% for prob in probs %}
+        <div class="problemsList">
+          <div class="problemname">
+            <a href="{% url 'problem_description' prob.id %}">{{ prob.name }} ({{ prob.difficulty }})</a>
+          </div>
+        </div>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
 </html>
